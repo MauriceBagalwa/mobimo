@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
  * @Routing
  */
 app.use(bodyparser.json());
-app.use("/v1", router.message);
+app.use("/v1/mssg", router.message);
 app.use("/", router.transaction);
 
 app.get("/test",(req,res)=>{
