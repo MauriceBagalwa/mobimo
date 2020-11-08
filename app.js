@@ -13,16 +13,13 @@ const PORT = process.env.PORT;
 /*
  * @Routing
  */
-/*
- Home page
-*/
-app.get("/", (req, res) => {
-  res.send("welcome in Mobimo...");
-});
 
 app.use("/message", router.message);
 app.use("/transaction", router.transaction);
 
+app.get("", (req, res) => {
+  res.send("welcome in Mobimo...");
+});
 /*
  * #gestion des erreurs
  */
