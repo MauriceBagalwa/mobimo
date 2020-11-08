@@ -17,8 +17,8 @@ const PORT = process.env.PORT || 4000;
 app.use("/message", router.message);
 app.use("/transaction", router.transaction);
 
-app.get("/", () => {
-  res.send("Hello World!");
+app.get("/", (req, res) => {
+  res.send("welcome in Mobimo...");
 });
 /*
  * #gestion des erreurs
