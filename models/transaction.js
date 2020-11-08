@@ -4,6 +4,7 @@ const Sequelize = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
   const Transaction = sequelize.define(
     "transaction",
+
     {
       id: {
         type: DataTypes.STRING(50),
@@ -19,7 +20,6 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
-
       numero: {
         type: DataTypes.STRING(20),
         allowNull: false,
@@ -42,6 +42,10 @@ module.exports = function (sequelize, DataTypes) {
       },
       date: {
         type: DataTypes.NOW,
+        allowNull: false,
+      },
+      coderefeence: {
+        type: DataTypes.STRING(10),
         allowNull: false,
       },
       etat: {

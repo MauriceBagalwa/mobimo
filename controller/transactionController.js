@@ -12,7 +12,7 @@ module.exports = {
         next(error);
       });
   },
-  transaction: async (req, res, next) => {
+  transaction: (req, res, next) => {
     db.findOne({ where: { reference: req.body.reference } })
       .find((find) => {
         if (find)
@@ -29,6 +29,7 @@ module.exports = {
             devise: req.body.devise,
             solde: req.body.solde,
             message: req.body.message,
+            coderefeence: "234678",
           };
           db.create(item).then((create) => {
             res.Status(200).json({
