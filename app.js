@@ -17,8 +17,8 @@ const PORT = process.env.PORT || 4000;
 app.use("/message", router.message);
 app.use("/transaction", router.transaction);
 
-app.get("", (req, res) => {
-  res.send("welcome in Mobimo...");
+app.get("/", () => {
+  res.send("Hello World!");
 });
 /*
  * #gestion des erreurs
@@ -41,5 +41,5 @@ app.use((error, req, res, next) => {
  * @Server
  */
 app.listen(PORT, () => {
-  console.log(`server is runing on 🚀http://locahost:${PORT}`);
+  console.log(`server is runing on http://locahost:${PORT}`);
 });
