@@ -1,8 +1,11 @@
 {
   "name": "mobimo",
   "version": "1.0.0",
-  "description": "api d'enregistrement transaction de mobil money",
+  "description": "\"api d'enregistrement transaction de mobil money\"",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "author": "#Sniper",
   "license": "MIT",
   "dependencies": {
