@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "server mobimo",
   "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
   "repository": "https://github.com/MauriceBagalwa/mobimo.git",
   "author": "Maurice Bagalwa <mauricebagalwa009@gmail.com>",
   "license": "MIT",
