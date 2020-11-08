@@ -4,16 +4,17 @@
 const express = require("express");
 const creatError = require("http-errors");
 const router = require("./router");
+const bodyparser = require("body-parser");
 require("dotenv").config();
 /*
  * @Mes variables
  */
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8000;
 /*
  * @Routing
  */
-
+app.use(bodyparser.json());
 app.use("/message", router.message);
 app.use("/transaction", router.transaction);
 
