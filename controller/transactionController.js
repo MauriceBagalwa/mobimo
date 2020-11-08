@@ -33,7 +33,7 @@ module.exports = {
             message: req.body.message,
             coderefeence: "234678",
           };
-          db.create(item).then((create) => {
+          db.transaction.create(item).then((create) => {
             res.Status(200).json({
               message: "Transaction save.",
             });
