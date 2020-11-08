@@ -9,7 +9,7 @@ require("dotenv").config();
  * @Mes variables
  */
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 /*
  * @Routing
  */

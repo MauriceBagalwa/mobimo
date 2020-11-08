@@ -21,20 +21,20 @@ module.exports = {
           });
         else {
           const item = {
-            id:shortId.generate(),
-            reference:req.body.reference,
-            reseau:req.body.reseau,
-            numero:req.body.numero,
-            montant:req.body.montant,
-            devise:req.body.devise,
-            solde:req.body.solde,
-            message:req.body.message
+            id: shortId.generate(),
+            reference: req.body.reference,
+            reseau: req.body.reseau,
+            numero: req.body.numero,
+            montant: req.body.montant,
+            devise: req.body.devise,
+            solde: req.body.solde,
+            message: req.body.message,
           };
-          db.create(item).then((create)=>{
+          db.create(item).then((create) => {
             res.Status(200).json({
-                message: "Transaction save.",
-              });
-          })
+              message: "Transaction save.",
+            });
+          });
         }
       })
       .catch((error) => {
