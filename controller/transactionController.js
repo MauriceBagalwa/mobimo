@@ -5,7 +5,7 @@ module.exports = {
     db.transaction
       .findAndCountAll()
       .then((find) => {
-        res.Status(200).json({
+        res.status(200).json({
           find,
         });
       })
@@ -18,7 +18,7 @@ module.exports = {
       .findOne({ where: { reference: req.body.reference } })
       .find((find) => {
         if (find)
-          res.Status(403).json({
+          res.status(403).json({
             message: "The reference is already in use.",
           });
         else {
