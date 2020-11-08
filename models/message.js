@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       dateReception: {
         type: DataTypes.DATE,
-        allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
     },
     {
