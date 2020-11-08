@@ -15,8 +15,8 @@ const PORT = process.env.PORT || 8000;
  * @Routing
  */
 app.use(bodyparser.json());
-app.use("v1", router.message);
-app.use("v1/trans", router.transaction);
+app.use("/v1", router.message);
+app.use("/v1/trans", router.transaction);
 
 app.get("/", (req, res) => {
   res.send("welcome in Mobimo...");
