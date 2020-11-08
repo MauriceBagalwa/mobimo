@@ -16,7 +16,7 @@ module.exports = {
   transaction: (req, res, next) => {
     db.transaction
       .findOne({ where: { reference: req.body.reference } })
-      .find((find) => {
+      .then((find) => {
         if (find)
           res.status(403).json({
             message: "The reference is already in use.",
