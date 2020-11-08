@@ -45,20 +45,22 @@ module.exports = {
         next(error);
       });
   },
-  isUse:async(req,res,next)=>{
-    const{codereference,etat}
-    db.transaction.findOne({where:{codereference,etat:false}}).then((find)=>{
-      if(find)
-      res.status(403).json({
-        message:"Incorrect or already used code"
-      })
-      else{
-        find.update({etat:true}).then((update)=>{
-          res.status(200).json({
-            find
-          })
-        })
-      }
-    })
-  }
+  isUse: async (req, res, next) => {
+    const { codereference } = req.body;
+    db.transaction
+      .findOne({ where: { codereference, etat: false } })
+      .then((find) => {
+        if (find)
+          res.status(403).json({
+            message: "Incorrect or already used code",
+          });
+        else {
+          find.update({ etat: true }).then((update) => {
+            res.status(200).json({
+              find,
+            });
+          });
+        }
+      });
+  },
 };
