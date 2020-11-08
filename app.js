@@ -18,9 +18,14 @@ app.use(bodyparser.json());
 app.use("/v1", router.message);
 app.use("/v1/trans", router.transaction);
 
+app.get("v1/test",(req,res)=>{
+  res.send("welcome in Mobimo... 2");
+})
+
 app.get("/", (req, res) => {
   res.send("welcome in Mobimo...");
 });
+
 /*
  * #gestion des erreurs
  */
