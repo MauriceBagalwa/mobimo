@@ -1,7 +1,7 @@
 const db = require("../models/transaction");
 const shortId = require("shortid");
 module.exports = {
-  transactions: (req, res, next) => {
+  transactions: async (req, res, next) => {
     res.send({ Bonjour });
     // db.findAndCountAll()
     //   .then((find) => {
