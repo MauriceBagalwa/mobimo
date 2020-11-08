@@ -46,7 +46,19 @@ module.exports = {
       });
   },
   isUse:async(req,res,next)=>{
-    const{coderefeence}
-    db.transaction.findOne({where:{}})
+    const{codereference,etat}
+    db.transaction.findOne({where:{codereference,etat:false}}).then((find)=>{
+      if(find)
+      res.status(403).json({
+        message:"Incorrect or already used code"
+      })
+      else{
+        find.update({etat:true}).then((update)=>{
+          res.status(200).json({
+            find
+          })
+        })
+      }
+    })
   }
 };
