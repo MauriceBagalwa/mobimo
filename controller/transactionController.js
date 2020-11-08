@@ -1,8 +1,9 @@
-const db = require("../models/transaction");
+const db = require("../models");
 const shortId = require("shortid");
 module.exports = {
   transactions: async (req, res, next) => {
-    db.findAndCountAll()
+    db.transaction
+      .findAndCountAll()
       .then((find) => {
         res.Status(200).json({
           find,
@@ -13,7 +14,8 @@ module.exports = {
       });
   },
   transaction: (req, res, next) => {
-    db.findOne({ where: { reference: req.body.reference } })
+    db.transaction
+      .findOne({ where: { reference: req.body.reference } })
       .find((find) => {
         if (find)
           res.Status(403).json({
