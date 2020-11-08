@@ -34,7 +34,7 @@ module.exports = {
             coderefeence: "234678",
           };
           db.transaction.create(item).then((create) => {
-            res.Status(200).json({
+            res.status(200).json({
               message: "Transaction save.",
             });
           });
