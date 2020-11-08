@@ -3,7 +3,7 @@ const shortId = require("shortid");
 module.exports = {
   messages: async (req, res, next) => {
     db.message
-      .findAndCountAll({ offset: 5, limit: 5 })
+      .findAndCountAll()
       .then((find) => {
         res.status(200).json(find);
       })
