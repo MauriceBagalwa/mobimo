@@ -2,15 +2,16 @@ const db = require("../models/transaction");
 const shortId = require("shortid");
 module.exports = {
   transactions: async (req, res, next) => {
-    db.findAndCountAll()
-      .then((find) => {
-        res.Status(200).json({
-          find,
-        });
-      })
-      .catch((error) => {
-        next(error);
-      });
+    res.send({ Bonjour });
+    // db.findAndCountAll()
+    //   .then((find) => {
+    //     res.Status(200).json({
+    //       find,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     next(error);
+    //   });
   },
   transaction: (req, res, next) => {
     db.findOne({ where: { reference: req.body.reference } })
