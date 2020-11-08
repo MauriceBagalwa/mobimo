@@ -1,5 +1,6 @@
 const db = require("../models");
 const shortId = require("shortid");
+const { async } = require("rxjs");
 module.exports = {
   transactions: async (req, res, next) => {
     db.transaction
@@ -31,7 +32,7 @@ module.exports = {
             devise: req.body.devise,
             solde: req.body.solde,
             message: req.body.message,
-            coderefeence: "234678",
+            codereference: "234678",
           };
           db.transaction.create(item).then((create) => {
             res.status(200).json({
@@ -44,4 +45,8 @@ module.exports = {
         next(error);
       });
   },
+  isUse:async(req,res,next)=>{
+    const{coderefeence}
+    db.transaction.findOne({where:{}})
+  }
 };
