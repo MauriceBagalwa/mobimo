@@ -41,8 +41,8 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
       date: {
-        type: DataTypes.NOW,
-        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
       coderefeence: {
         type: DataTypes.STRING(10),
