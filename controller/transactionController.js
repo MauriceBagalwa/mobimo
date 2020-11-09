@@ -32,7 +32,6 @@ module.exports = {
             devise: req.body.devise,
             solde: req.body.solde,
             message: req.body.message,
-            codereference: "234678",
           };
           db.transaction.create(item).then((create) => {
             res.status(200).json({
