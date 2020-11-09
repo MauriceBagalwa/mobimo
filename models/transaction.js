@@ -1,8 +1,4 @@
 /* jshint indent: 2 */
-var result = "";
-var characters =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-var charactersLength = characters.length;
 const Sequelize = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
   const Transaction = sequelize.define(
@@ -63,6 +59,10 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
       hooks: {
         beforeValidate: function (trans) {
+          var result = "";
+          var characters =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+          var charactersLength = characters.length;
           for (var i = 0; i < 6; i++) {
             result += characters.charAt(
               Math.floor(Math.random() * charactersLength)
