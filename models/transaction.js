@@ -39,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      date: {
+      dateReception: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
