@@ -48,7 +48,7 @@ module.exports = {
     db.transaction
       .findOne({ where: { codereference, etat: false } })
       .then((find) => {
-        if (find)
+        if (!find)
           res.status(403).json({
             message: "Incorrect or already used code",
           });
