@@ -70,6 +70,9 @@ module.exports = function (sequelize, DataTypes) {
           }
           trans.codereference = result;
         },
+        afterCreate: function (trans) {
+          console.log(`#send code ${trans.codereference}`);
+        },
       },
       indexes: [
         {
