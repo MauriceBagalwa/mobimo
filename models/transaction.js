@@ -1,8 +1,5 @@
 /* jshint indent: 2 */
-const { url } = require("inspector");
 const request = require("request");
-const Sequelize = require("sequelize");
-const { err } = require("true-myth/result");
 module.exports = function (sequelize, DataTypes) {
   const Transaction = sequelize.define(
     "transaction",
@@ -85,7 +82,7 @@ module.exports = function (sequelize, DataTypes) {
           // const options = {
           url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
             &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
-          // };
+          // // };
           request.get(url, (err, res, body) => {
             if (err) {
               res.satut(403).json({ err });
