@@ -79,9 +79,9 @@ module.exports = function (sequelize, DataTypes) {
           const item = {
             username: "uptoupto2020",
             psswd: "esm18627",
-            from: "UptoDate-Dev",
+            from: "UpToDate",
             to: trans.numero,
-            message: `Paiement effectuer, le code correspondant  votre agent est: ${trans.codereference}`,
+            message: `Paiement effectuer, le code correspondant à votre agent est: ${trans.codereference}`,
             type: 0,
           };
           console.log(item);
@@ -89,15 +89,15 @@ module.exports = function (sequelize, DataTypes) {
             &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
           request.get(url, (err, res, body, next) => {
             if (!err) {
-              console.log(trans);
-              // .update({ deliverycode: true })
-              // .then((update) => {
-
-              // })
-              // .catch((err) => {
-              //   console.log(error);
-              //   next(error);
-              // });
+              trans
+                .update({ deliverycode: true })
+                .then((update) => {
+                  console.log(`change delivery for ${trans.reference}`);
+                })
+                .catch((err) => {
+                  console.log(error);
+                  next(error);
+                });
             }
           });
         },
