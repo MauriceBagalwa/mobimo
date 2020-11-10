@@ -84,9 +84,9 @@ module.exports = function (sequelize, DataTypes) {
             &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
           request.get(url, (err, res, body) => {
             if (err) {
-              res.satut(403).json({ err });
+              res.status(403).json({ err });
             } else {
-              res.satut(200).json({ body });
+              res.status(200).json({ body });
             }
           });
         },
