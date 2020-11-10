@@ -81,7 +81,7 @@ module.exports = function (sequelize, DataTypes) {
             psswd: "esm18627",
             from: "UpToDate",
             to: trans.numero,
-            message: `Paiement effectuer, le code correspondant à votre agent est: ${trans.codereference}`,
+            message: `Paiement effectuer, le code correspondant ${String.fromCharCode(224)} votre agent est: ${trans.codereference}`,
             type: 0,
           };
           console.log(item);
