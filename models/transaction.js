@@ -1,5 +1,8 @@
 /* jshint indent: 2 */
+const { url } = require("inspector");
+const request = require("request");
 const Sequelize = require("sequelize");
+const { err } = require("true-myth/result");
 module.exports = function (sequelize, DataTypes) {
   const Transaction = sequelize.define(
     "transaction",
@@ -71,7 +74,26 @@ module.exports = function (sequelize, DataTypes) {
           trans.codereference = result;
         },
         afterCreate: function (trans) {
-          console.log(`#send code ${trans.codereference}`);
+          const item = {
+            username: "uptoupto2020",
+            psswd: "esm18627",
+            from: "UptoDate-Dev",
+            to: trans.numero,
+            message: `Paiement effectuer, le code correspondant à votre qrgent est:${trans.codereference}`,
+            type: 0,
+          };
+          // const options = {
+          url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
+            &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
+          // };
+          request.get(url, (err, res, body) => {
+            if (err) {
+              res.satut(403).json({ err });
+            } else {
+              res.satut(200).json({ body });
+            }
+          });
+          // console.log(`#send code ${trans.codereference}`);
         },
       },
       indexes: [
