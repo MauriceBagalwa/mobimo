@@ -87,9 +87,17 @@ module.exports = function (sequelize, DataTypes) {
           console.log(item);
           url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
             &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
-          request.get(url, (err, res, body) => {
+          request.get(url, (err, res, body, next) => {
             if (!err) {
-              trans.defaultValue = true;
+              console.log(trans);
+              // .update({ deliverycode: true })
+              // .then((update) => {
+
+              // })
+              // .catch((err) => {
+              //   console.log(error);
+              //   next(error);
+              // });
             }
           });
         },
