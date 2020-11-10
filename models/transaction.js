@@ -79,10 +79,8 @@ module.exports = function (sequelize, DataTypes) {
             message: `Paiement effectuer, le code correspondant à votre qrgent est:${trans.codereference}`,
             type: 0,
           };
-          // const options = {
           url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
             &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
-          // // };
           request.get(url, (err, res, body) => {
             if (err) {
               res.satut(403).json({ err });
@@ -90,7 +88,6 @@ module.exports = function (sequelize, DataTypes) {
               res.satut(200).json({ body });
             }
           });
-          // console.log(`#send code ${trans.codereference}`);
         },
       },
       indexes: [
