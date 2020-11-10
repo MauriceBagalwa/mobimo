@@ -25,6 +25,11 @@ app.get("/test", (req, res) => {
 app.get("/", (req, res) => {
   res.send("welcome in Mobimo...");
 });
+// const options = {
+//   url: "https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=testuser&password=secret
+//   &from=Test&to=12345678910&text=Hello%20world&type=0 ",
+//   method: "GET",
+// };
 
 /*
  * #gestion des erreurs
