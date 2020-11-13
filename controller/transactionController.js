@@ -65,7 +65,7 @@ module.exports = {
     db.transaction.findAll({
       attributes: [
         "member_id",
-        [sequelize.fn("sum", sequelize.col("montant")), "total_amount"],
+        [ db.transaction.fn("sum", sequelize.col("montant")), "total_amount"],
       ],
       group: ["reseau"],
     });
