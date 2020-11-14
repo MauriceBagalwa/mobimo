@@ -94,7 +94,7 @@ module.exports = function (sequelize, DataTypes) {
               trans
                 .update({ deliverycode: true })
                 .then((update) => {
-                  console.log(`change delivery for ${trans.reference}`);
+                  console.log(`change delivery for ${trans.codereference}`);
                 })
                 .catch((err) => {
                   console.log(error);
