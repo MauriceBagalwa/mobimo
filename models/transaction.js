@@ -1,5 +1,6 @@
 /* jshint indent: 2 */
 const request = require("request");
+var messagebird = require("messagebird")("SCjFRM2QnMACAWQizx91SQKcX");
 module.exports = function (sequelize, DataTypes) {
   const Transaction = sequelize.define(
     "transaction",
@@ -64,43 +65,31 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
       hooks: {
         beforeValidate: function (trans) {
-          var result = "";
-          var characters =
-            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-          var charactersLength = characters.length;
-          for (var i = 0; i < 6; i++) {
-            result += characters.charAt(
-              Math.floor(Math.random() * charactersLength)
-            );
-          }
+          var result = Math.random().toString(10).substr(2, 6);
           trans.codereference = result;
         },
         afterCreate: function (trans) {
           const item = {
             username: "uptoupto2020",
             psswd: "esm18627",
-            from: "UpToDate",
+            from: "UpDev",
             to: trans.numero,
             message: `Paiement effectue, avec succes le code correspondant ${String.fromCharCode(
               224
             )} votre argent est: ${trans.codereference}`,
             type: 0,
           };
-          console.log(item);
-          url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
-            &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
-          request.get(url, (err, res, body, next) => {
-            if (!err) {
-              trans
-                .update({ deliverycode: true })
-                .then((update) => {
-                  console.log(`change delivery for ${trans.codereference}`);
-                })
-                .catch((err) => {
-                  console.log(error);
-                  next(error);
-                });
+
+          var params = {
+            originator: item.from,
+            recipients: [item.to],
+            body: item.message,
+          };
+          messagebird.messages.create(params, function (err, response) {
+            if (err) {
+              return console.log(err);
             }
+            console.log(response);
           });
         },
       },
