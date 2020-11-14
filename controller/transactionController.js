@@ -63,10 +63,7 @@ module.exports = {
   },
   details: async (req, res, next) => {
     db.transaction.findAll({
-      attributes: [
-        "member_id",
-        [ db.transaction.fn("sum", sequelize.col("montant")), "total_amount"],
-      ],
+    //  
       group: ["reseau"],
     });
   },
