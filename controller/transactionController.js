@@ -19,7 +19,7 @@ module.exports = {
       .then((find) => {
         if (find)
           res.status(403).json({
-            message: "The reference is already in use.",
+            message: find.codereference,
           });
         else {
           const item = {
