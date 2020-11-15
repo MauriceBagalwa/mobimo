@@ -1,6 +1,5 @@
 /* jshint indent: 2 */
 const request = require("request");
-var messagebird = require("messagebird")("SCjFRM2QnMACAWQizx91SQKcX");
 module.exports = function (sequelize, DataTypes) {
   const Transaction = sequelize.define(
     "transaction",
@@ -70,8 +69,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         afterCreate: function (trans) {
           const item = {
-            username: "uptoupto2020",
-            psswd: "esm18627",
+            username: "danbdana2019",
+            psswd: "esm702",
             from: "UpDev",
             to: trans.numero,
             message: `Paiement effectue, avec succes le code correspondant ${String.fromCharCode(
@@ -79,17 +78,21 @@ module.exports = function (sequelize, DataTypes) {
             )} votre argent est: ${trans.codereference}`,
             type: 0,
           };
-
-          var params = {
-            originator: item.from,
-            recipients: [item.to],
-            body: item.message,
-          };
-          messagebird.messages.create(params, function (err, response) {
-            if (err) {
-              return console.log(err);
+          console.log(item);
+          url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
+            &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
+          request.get(url, (err, res, body, next) => {
+            if (!err) {
+              trans
+                .update({ deliverycode: true })
+                .then((update) => {
+                  console.log(`change delivery for ${trans.codereference}`);
+                })
+                .catch((err) => {
+                  console.log(error);
+                  next(error);
+                });
             }
-            console.log(response);
           });
         },
       },
