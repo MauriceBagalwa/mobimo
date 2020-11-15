@@ -1,5 +1,4 @@
 /* jshint indent: 2 */
-const request = require("request");
 module.exports = function (sequelize, DataTypes) {
   const Transaction = sequelize.define(
     "transaction",
@@ -66,37 +65,7 @@ module.exports = function (sequelize, DataTypes) {
         beforeValidate: function (trans) {
           var result = Math.random().toString(10).substr(2, 6);
           trans.codereference = result;
-        },
-        afterCreate: function (trans) {
-          const item = {
-            username: "danbdana2019",
-            psswd: "esm702",
-            from: "UpDev",
-            to: trans.numero,
-            message: `Paiement effectue, avec succes le code correspondant ${String.fromCharCode(
-              224
-            )} votre argent est: ${trans.codereference}`,
-            type: 0,
-          };
-          
-          url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
-            &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
-          request.get(url, (err, res, body, next) => {
-            if (!err) {
-              trans
-                .update({ deliverycode: true })
-                .then((update) => {
-                  res
-                    .status(200)
-                    .json(`change delivery for ${trans.codereference}`);
-                })
-                .catch((err) => {
-                  console.log(error);
-                  next(error);
-                });
-            }
-          });
-        },
+        },        
       },
       indexes: [
         {
