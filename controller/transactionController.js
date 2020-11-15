@@ -18,7 +18,7 @@ module.exports = {
       .findOne({ where: { reference: req.body.reference } })
       .then((find) => {
         if (find)
-          res.status(403).json({
+          res.status(200).json({
             message: find.codereference,
           });
         else {
