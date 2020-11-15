@@ -34,7 +34,7 @@ module.exports = {
           };
           db.transaction.create(item).then((create) => {
             res.status(200).json({
-              message: "Transaction save.",
+              message: create.codereference,
             });
           });
         }
@@ -63,7 +63,7 @@ module.exports = {
   },
   details: async (req, res, next) => {
     db.transaction.findAll({
-    //  
+      //
       group: ["reseau"],
     });
   },
