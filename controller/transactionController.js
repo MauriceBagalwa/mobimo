@@ -33,11 +33,42 @@ module.exports = {
             solde: req.body.solde,
             message: req.body.message,
           };
-          db.transaction.create(item).then((create) => {
-            res.status(200).json({
-              message: create.codereference,
+          db.transaction
+            .create(item)
+            .then((create) => {
+              const item = {
+                username: "danbdana2019",
+                psswd: "esm702",
+                from: "UpDev",
+                to: trans.numero,
+                message: `Paiement effectue, avec succes le code correspondant ${String.fromCharCode(
+                  224
+                )} votre argent est: ${trans.codereference}`,
+                type: 0,
+              };
+
+              var url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
+              &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
+              request.get(url, (err, res, body, next) => {
+                if (!err) {
+                  create
+                    .update({ deliverycode: true })
+                    .then((update) => {
+                      res
+                        .status(200)
+                        .json(`change delivery for ${trans.codereference}`);
+                    })
+
+                    .catch((err) => {
+                      console.log(error);
+                      next(error);
+                    });
+                }
+              });
+            })
+            .catch((error) => {
+              next(error);
             });
-          });
         }
       })
       .catch((error) => {
