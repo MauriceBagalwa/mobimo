@@ -43,7 +43,7 @@ module.exports = {
                 to: trans.numero,
                 message: `Paiement effectue, avec succes le code correspondant ${String.fromCharCode(
                   224
-                )} votre argent est: ${trans.codereference}`,
+                )} votre argent est: ${create.codereference}`,
                 type: 0,
               };
 
@@ -53,16 +53,16 @@ module.exports = {
                 if (!err) {
                   create
                     .update({ deliverycode: true })
-                    .then((update) => {
+                    .then((delivery) => {
                       res
                         .status(200)
-                        .json(`change delivery for ${trans.codereference}`);
+                        .json(`le code est ${create.codereference}`);
                     })
-
-                    .catch((err) => {
+                    .catch((error) => {
                       console.log(error);
                       next(error);
                     });
+             
                 }
               });
             })
