@@ -1,4 +1,5 @@
 const db = require("../models");
+const request = require("request");
 const shortId = require("shortid");
 module.exports = {
   transactions: async (req, res, next) => {
