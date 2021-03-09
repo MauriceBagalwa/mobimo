@@ -67,4 +67,32 @@ module.exports = {
       group: ["reseau"],
     });
   },
+  sendMssg: async (req, res, next) => {
+    const { message, number, from } = req.body;
+
+    const item = {
+      username: "danbdana2019",
+      psswd: "esm702",
+      from,
+      to: number,
+      message,
+      type: 0,
+    };
+    console.log(item);
+    url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
+      &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
+    request.get(url, (err, res, body, next) => {
+      if (!err) {
+        trans
+          .update({ deliverycode: true })
+          .then((update) => {
+            console.log(`change delivery for ${number}`);
+          })
+          .catch((err) => {
+            console.log(error);
+            next(error);
+          });
+      }
+    });
+  },
 };
