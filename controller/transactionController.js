@@ -89,7 +89,9 @@ module.exports = {
     });
 
     if (send) {
-      res.status(200).json(`change delivery for ${number}`);
+      res.status(200).json({
+        number,
+      });
     } else {
       res.status(400).json("error ");
     }
