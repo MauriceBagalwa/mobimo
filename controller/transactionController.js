@@ -84,15 +84,10 @@ module.exports = {
       &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
     request.get(url, (err, res, body, next) => {
       if (!err) {
-        trans
-          .update({ deliverycode: true })
-          .then((update) => {
-            console.log(`change delivery for ${number}`);
-          })
-          .catch((err) => {
-            console.log(error);
-            next(error);
-          });
+        res.status(200).json(`change delivery for ${number}`);
+      } else {
+        console.log(err.message);
+        res.status(240000).json("Erreur d'envoie.");
       }
     });
   },
