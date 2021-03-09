@@ -74,7 +74,7 @@ module.exports = {
     const item = {
       username: "danbdana2019",
       psswd: "esm702",
-      from:"FREPES",
+      from:"FRIPES",
       to: number,
       message,
       type: 0,
