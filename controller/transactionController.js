@@ -82,13 +82,16 @@ module.exports = {
     console.log(item);
     url = `https://www.easysendsms.com/sms/bulksms-api/bulksms-api?username=${item.username}&password=${item.psswd}
       &from=${item.from}&to=${item.to}&text=${item.message}&type=${item.type}`;
-    request.get(url, (err, res, body, next) => {
-      if (!err) {
-        res.status(200).json(`change delivery for ${number}`);
-      } else {
+    const send = request.get(url, (err, res, body, next) => {
+      if (err) {
         console.log(err.message);
-        res.status(240000).json("Erreur d'envoie.");
       }
     });
+
+    if (send) {
+      res.status(200).json(`change delivery for ${number}`);
+    } else {
+      res.status(400).json("error ");
+    }
   },
 };
